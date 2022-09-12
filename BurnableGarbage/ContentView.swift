@@ -4,7 +4,8 @@
 //
 //  Created by sako0602 on 2022/08/19.
 //
-//　gitテスト
+//　2回目アイウエオ
+
 import SwiftUI
 
 struct ContentView: View {
