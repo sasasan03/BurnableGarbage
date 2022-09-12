@@ -2,7 +2,7 @@
 //  LottieView.swift
 //  BurnableGarbage
 //
-//  Created by 佐小田弘道 on 2022/08/23.
+//  Created by sako0602 on 2022/08/23.
 //
 import SwiftUI
 import Lottie

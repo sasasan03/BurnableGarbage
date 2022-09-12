@@ -25,6 +25,7 @@
 		6991CA3728B45DE6007F4114 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6991CA3628B45DE6007F4114 /* Lottie */; };
 		6991CA3B28B467F2007F4114 /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = 6991CA3A28B467F2007F4114 /* error.json */; };
 		69989A0C28BB33EC00AF50B2 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69989A0B28BB33EC00AF50B2 /* Home.swift */; };
+		69B9CF4728CDC04800035C2F /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B9CF4628CDC04800035C2F /* Sound.swift */; };
 		69CC7BFA28BE2966005B7155 /* BackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CC7BF928BE2966005B7155 /* BackView.swift */; };
 		69D4D07D28B9C39E00489C29 /* SwipGarbage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D4D07C28B9C39E00489C29 /* SwipGarbage.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		6991CA3328B45110007F4114 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		6991CA3A28B467F2007F4114 /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
 		69989A0B28BB33EC00AF50B2 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		69B9CF4628CDC04800035C2F /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		69CC7BF928BE2966005B7155 /* BackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackView.swift; sourceTree = "<group>"; };
 		69D4D07C28B9C39E00489C29 /* SwipGarbage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipGarbage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 			children = (
 				6991C9F728AF51F6007F4114 /* BurnableGarbageApp.swift */,
 				6991C9F928AF51F6007F4114 /* ContentView.swift */,
+				69B9CF4628CDC04800035C2F /* Sound.swift */,
 				694411A828CB6E5E00BE37B8 /* ItemViewModel.swift */,
 				693970D028B711B600A6BB14 /* ButtonGarbage */,
 				69CC7BF828BE2924005B7155 /* SwipView */,
@@ -335,6 +338,7 @@
 				69989A0C28BB33EC00AF50B2 /* Home.swift in Sources */,
 				694411A928CB6E5E00BE37B8 /* ItemViewModel.swift in Sources */,
 				6991CA3428B45110007F4114 /* ErrorView.swift in Sources */,
+				69B9CF4728CDC04800035C2F /* Sound.swift in Sources */,
 				69CC7BFA28BE2966005B7155 /* BackView.swift in Sources */,
 				698AEA8428BF991D0008A3CA /* LottieView.swift in Sources */,
 				6991C9FA28AF51F6007F4114 /* ContentView.swift in Sources */,

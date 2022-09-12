@@ -2,7 +2,7 @@
 //  PutInTrash.swift
 //  BurnableGarbage
 //
-//  Created by 佐小田弘道 on 2022/08/20.
+//  Created by sako0602 on 2022/08/20.
 //
 
 import SwiftUI

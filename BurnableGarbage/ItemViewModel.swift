@@ -2,7 +2,7 @@
 //  ItemView.swift
 //  BurnableGarbage
 //
-//  Created by 佐小田弘道 on 2022/09/09.
+//  Created by sako0602 on 2022/09/09.
 //
 
 //import Foundation
