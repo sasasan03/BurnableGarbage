@@ -30,7 +30,7 @@ struct BackView: View {
                         .font(.system(size: 80))
                         .frame(width: 900, height: 400, alignment: .bottom)
                 }
-            }.ignoresSafeArea(edges: .top)
+            }.ignoresSafeArea(edges: .all)
             
         }
 }

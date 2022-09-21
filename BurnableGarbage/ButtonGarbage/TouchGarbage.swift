@@ -16,26 +16,49 @@ struct TouchGarbage: View {
     @State private var shoes = true
     @State private var notebook = true
     @State private var kutsushita = true
-//    @EnvironmentObject var vm: ItemViewModel
     
-    private let Correct = try! AVAudioPlayer(data: NSDataAsset(name: "correct")!.data)
-    private let Wrong = try! AVAudioPlayer(data: NSDataAsset(name: "wrong")!.data)
-
-    private func playSoundCorrect(){
-        Correct.stop()
-        Correct.currentTime = 0.0
-        Correct.play()
-    }
-    private func playSoundWrong(){
-        Wrong.stop()
-        Wrong.currentTime = 0.0
-        Wrong.play()
-    }
+    @State var counter:Int = 0
+    
+    @Binding var ButtonGarbageOn: Bool
+    @Binding var HomeOn: Bool
     
     var body: some View {
         
 
             VStack {
+                
+                HStack{
+                    
+                    Button(action: {
+                        ButtonGarbageOn = false
+                        HomeOn = true
+                    }) {
+                        Text("やめる")
+                            .font(.system(size: 30))
+                            .foregroundColor(Color.red)
+                            .fontWeight(.black)
+                            .lineLimit(1)
+                            .minimumScaleFactor(1.0)
+                    }
+                    Spacer()
+                    
+                    Button {
+                        plastic = true
+                        kamikuzu = true
+                        nuigurumi = true
+                        shoes = true
+                        notebook = true
+                        kutsushita = true
+                    } label: {
+                        Text("やりなおす")
+                            .font(.system(size: 30))
+                            .foregroundColor(Color.blue)
+                            .fontWeight(.black)
+                            .lineLimit(1)
+                            .minimumScaleFactor(1.0)
+                    }
+
+                }
                 
                 Spacer()
                 
@@ -60,7 +83,7 @@ struct TouchGarbage: View {
                         }
                     } label: {
                         if shoes {
-                            Image("shoes")
+                        Image("shoes")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 230, height: 230)
@@ -70,8 +93,9 @@ struct TouchGarbage: View {
                                 .frame(width: 230, height: 230)
                                 .foregroundColor(.white)
                         }
-                    }
-                    
+                        //.dieabled効かない
+                    }.disabled(counter >= 1)
+
                     
                     Button {
                         withAnimation() {
@@ -83,7 +107,7 @@ struct TouchGarbage: View {
                             }
                         }
                     } label: {
-                        if shoes {
+                        if nuigurumi {
                             Image("nuigurumi")
                                 .resizable()
                                 .scaledToFit()
@@ -204,23 +228,15 @@ struct TouchGarbage: View {
                         .scaledToFit()
                         .frame(width: 300, height: 300)
 
-//                    if vm.shoes == false {
-//                        SplashErrorhScreen()
-//                                .frame(width: 200, height: 200)
-//                                .scaleEffect(vm.shoes ? 2.0 : 2.0)
-//                                .animation(
-//                                    .default.delay(0.2))
-//                        withAnimation() {
-//                            vm.shoes.toggle()
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//                                if vm.shoes == false{
-//                                    playSoundWrong()
-//                                }
-//                            }
-//                        }
-//
-//                    }
 
+                    if shoes == false {
+                        SplashErrorhScreen()
+                                .frame(width: 200, height: 200)
+                                .scaleEffect(shoes ? 2.0 : 2.0)
+                                .animation(
+                                    .default.delay(0.2))
+                    }
+                    
                     if nuigurumi == false {
                         SplashErrorhScreen()
                                 .frame(width: 200, height: 200)
@@ -270,6 +286,6 @@ struct TouchGarbage: View {
 
 struct MiddleView_Previews: PreviewProvider {
     static var previews: some View {
-        TouchGarbage()
+        TouchGarbage(ButtonGarbageOn: .constant(false), HomeOn: .constant(false))
     }
 }

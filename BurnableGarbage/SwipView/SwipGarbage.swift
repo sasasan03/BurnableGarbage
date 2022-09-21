@@ -7,25 +7,20 @@
 import SwiftUI
 import AVFoundation
 
-
+//上のボタン配置について。どのような機種であっても適応されるのか？geometryReaderを使っている。
+//UIScreenを使わずに真ん中配置を可能にすることはできるのか？UIscreenの使いどころ
+//アイテムをからになったあとの初期化処理
+//Spacer(minLength: UIScreen.main.bounds.size.width * 0.8)の使い方
 struct SwipGarbage: View {
-    //    @Binding var SwipViewOn: Bool
-    //    @Binding var HomeOn: Bool
     
-    //    @State private var plastic = false
-    //    @State private var kamikuzu = false
-    //    @State private var nuigurumi = false
-    //    @State private var shoes = false
-    //    @State private var notebook = false
-    //    @State private var kutsushita = false
-    
+    @Binding var SwipViewOn: Bool
+    @Binding var HomeOn: Bool
     @State var items = ["nuigurumi","kamikuzu","plastic","kutsushita","shoes"]
     @State var itemkind = ["M","M","P","M","M"]
     
     @State var transration: CGSize = .zero
-    
-    
-    @State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.width / 2, y:UIScreen.main.bounds.height / 2)
+    //UIScreenで少し左に寄ってる
+    @State var location: CGPoint = CGPoint(x:  maxWidth / 2, y: maxHeight / 2)
     
     @State var bangou: Int = 4
     
@@ -76,27 +71,83 @@ struct SwipGarbage: View {
     
     func syokika() {
         bangou -= 1
-        location = CGPoint(x: UIScreen.main.bounds.width / 2, y:UIScreen.main.bounds.height / 2)
+        location = CGPoint(x: maxWidth / 2, y: maxHeight / 2)
     }
       
-    
-    
-//問題点imageの中でGifが出ちゃってる。
     
     var body: some View {
         
             ZStack {
                 
                 BackView()
-// 問題画像の表示
+// 問題画像の表示（少し左に寄ってる）
                  Image(items[bangou])
                     .resizable()
                     .scaledToFit()
                     .frame(width: 400, height: 400)
-//                    .background()
+                    .background(Color.black)
+                // .background()
                     .position(location)
                     .gesture(dragGesture)
                 
+                VStack{
+                    GeometryReader { geometry in
+                        HStack(spacing: 0){
+
+                            Button() {
+                                self.SwipViewOn = false
+                                self.HomeOn = true
+                            } label: {
+                                Text("やめる")
+                                    .font(.system(size: 30))
+                                    .foregroundColor(Color.red)
+                                    .background(Color.blue)
+//                                    .fontWeight(.black)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(1.0)
+//paddingで位置調整を行った
+                                    .padding(.trailing, 180)
+                            }.frame(width: geometry.size.width / 2)
+                                .background(Color.green)
+                            
+                            Button {
+                                self.SwipViewOn = false
+                                self.HomeOn = true
+                            } label: {
+                                Text("やりなおす")
+                                    .font(.system(size: 30))
+                                    .foregroundColor(Color.blue)
+                                    .background(Color.orange)
+//                                    .fontWeight(.black)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(1.0)
+//paddingで位置調整を行った
+                                    .padding(.leading, 180)
+                            }.frame(width: geometry.size.width / 2)
+                                .background(Color.indigo)
+                        }
+                    }
+                    
+                    
+                    Spacer()
+                }
+
+
+               //代入する。？言葉の意味 splashfag にfalseを代入
+                if batsuFlag {
+                    Image("batsu")
+                }
+                if seikaiFlag {
+                    Image("maru")
+                }
+            
+                }//ZStackの閉じ
+            }//viewの閉じ
+    }//swipGarbageの閉じ
+
+
+
+
 //                ForEach(items, id: \.self)  { num in
 //                        Image(num)
 //                        .resizable()
@@ -170,23 +221,9 @@ struct SwipGarbage: View {
 //                                    .default.delay(0.2))
 //                        }
 //                    }
-//
-       //
-               //代入する。？言葉の意味 splashfag にfalseを代入
-                if batsuFlag {
-                    Image("batsu")
-                }
-                if seikaiFlag {
-                    Image("maru")
-                }
-            
-                }//ZStackの閉じ
-            }//viewの閉じ
-    }//swipGarbageの閉じ
-
 
 struct SwipGarbage_Previews: PreviewProvider {
     static var previews: some View {
-        SwipGarbage()
+        SwipGarbage(SwipViewOn: .constant(false), HomeOn: .constant(false))
     }
 }
