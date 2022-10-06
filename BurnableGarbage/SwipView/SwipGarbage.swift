@@ -12,42 +12,47 @@ import AVFoundation
 //アイテムをからになったあとの初期化処理
 //Spacer(minLength: UIScreen.main.bounds.size.width * 0.8)の使い方
 struct SwipGarbage: View {
-    
+
+    let maxWidth = UIScreen.main.bounds.width
+    let maxHeight = UIScreen.main.bounds.height
     @Binding var SwipViewOn: Bool
     @Binding var HomeOn: Bool
     @State var items = ["nuigurumi","kamikuzu","plastic","kutsushita","shoes"]
     @State var itemkind = ["M","M","P","M","M"]
-    
+    @State var bangou: Int = 4
+
     @State var transration: CGSize = .zero
     //UIScreenで少し左に寄ってる
-    @State var location: CGPoint = CGPoint(x:  maxWidth / 2, y: maxHeight / 2)
-    
-    @State var bangou: Int = 4
-    
+    @State var location: CGPoint = CGPoint(x:  UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
+
+
     @State var batsuFlag:Bool = false
     @State var seikaiFlag:Bool = false
-    
+
     //gestureブロック some Gestureとは
     var dragGesture: some Gesture {
         DragGesture()
             .onChanged { value in
                 location = value.location
-                
+
             }
             .onEnded{_ in
-                hantei()
-                if bangou > 0 {
-                    
-                } else{
-                    saigo()
+                
+                    hantei()
+                    if bangou > 0 {
+
+                    } else{
+                        
+                    }
                 }
-            }
+                
+            
     }
     //最後のゴミが消えた後の動きを入力
     func saigo() {
         print("終わり")
     }
-    
+
     //判定
     func hantei(){
         if location.y > 400 && itemkind[bangou] == "P" ||
@@ -56,7 +61,11 @@ struct SwipGarbage: View {
             seikaiFlag = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 seikaiFlag = false
-                syokika()
+                if  bangou > 0 {
+                    bangou -= 1
+                } else {
+                    
+                }
             }
         }else {
             playSoundWrong()
@@ -64,55 +73,67 @@ struct SwipGarbage: View {
             batsuFlag = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 batsuFlag = false
-                syokika()
+                if  bangou > 0 {
+                    bangou -= 1
+                } else {
+                    
+                }
             }
         }
     }
-    
+
     func syokika() {
-        bangou -= 1
+        if  bangou > 0 {
+            bangou -= 1
+        } else {
+            
+        }
+
+        
         location = CGPoint(x: maxWidth / 2, y: maxHeight / 2)
     }
-      
-    
+
+
     var body: some View {
-        
+
             ZStack {
-                
+
                 BackView()
 // 問題画像の表示（少し左に寄ってる）
-                 Image(items[bangou])
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 400, height: 400)
-                    .background(Color.black)
-                // .background()
-                    .position(location)
-                    .gesture(dragGesture)
+        
+                Image(items[bangou])
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 400, height: 400)
+                        .background(Color.black)
+                    // .background()
+                        .position(location)
+                        .gesture(dragGesture)
                 
+                
+                 
                 VStack{
                     GeometryReader { geometry in
                         HStack(spacing: 0){
 
                             Button() {
-                                self.SwipViewOn = false
-                                self.HomeOn = true
+                                SwipViewOn = false
+                                HomeOn = true
                             } label: {
                                 Text("やめる")
                                     .font(.system(size: 30))
                                     .foregroundColor(Color.red)
                                     .background(Color.blue)
-//                                    .fontWeight(.black)
                                     .lineLimit(1)
                                     .minimumScaleFactor(1.0)
 //paddingで位置調整を行った
                                     .padding(.trailing, 180)
                             }.frame(width: geometry.size.width / 2)
                                 .background(Color.green)
-                            
+
                             Button {
-                                self.SwipViewOn = false
-                                self.HomeOn = true
+                                SwipViewOn = false
+                                HomeOn = true
                             } label: {
                                 Text("やりなおす")
                                     .font(.system(size: 30))
@@ -127,8 +148,8 @@ struct SwipGarbage: View {
                                 .background(Color.indigo)
                         }
                     }
-                    
-                    
+
+
                     Spacer()
                 }
 
@@ -140,13 +161,10 @@ struct SwipGarbage: View {
                 if seikaiFlag {
                     Image("maru")
                 }
-            
+
                 }//ZStackの閉じ
             }//viewの閉じ
-    }//swipGarbageの閉じ
-
-
-
+    }//structの閉じ
 
 //                ForEach(items, id: \.self)  { num in
 //                        Image(num)

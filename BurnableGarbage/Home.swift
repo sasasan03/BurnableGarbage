@@ -9,19 +9,37 @@ import SwiftUI
 
 struct Home: View {
     var body: some View {
-        
-            ZStack(alignment: .center) {
+        GeometryReader { geometry in
+            ZStack{
                 
                 LottieView(name: "garbageCharacter")
-                    .frame(width:900, height: 1100)
+                    .frame(width:geometry.size.width, height: geometry.size.height)
                     .background(Color.cyan)
-                    
                 
-                Text("ゴミをわけよう")
-                    .font(.system(size: 100))
-                    .foregroundColor(.white)
-                    .padding(.bottom, 900)
+                VStack {
+                    HStack{
+                        Color.clear
+                            .frame(height: geometry.size.height * 0.05)
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "gearshape")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width:  geometry.size.height * 0.06, height: geometry.size.height * 0.06)
+                                .padding()
+                        }
+                    }
+//                    Image(systemName: "gearshape.fill")
+                        .frame(height: geometry.size.height * 0.05)
+                    Text("ゴミをわけよう")
+                        .font(.system(size: 100))
+                        .foregroundColor(.white)
+                        
+                    Spacer()
+                }
             }
+        }
         }
     }
 

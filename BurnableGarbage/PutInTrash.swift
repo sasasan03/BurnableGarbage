@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PutInTrash: View {
     
-    @State var position:CGSize = CGSize(width: 600, height: 600)
+    @State var position:CGSize = CGSize(width: 0, height: 0)
     
     var drag: some Gesture {
         DragGesture()

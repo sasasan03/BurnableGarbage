@@ -8,7 +8,7 @@ import SwiftUI
 import Lottie
 
 //問題。。二つ目のアクションがおらない丸→バツ（２つ目のバツが動かない）早くクリックすると表示される。
-struct SplashErrorhScreen: View {
+struct SwipGarbegeEndMove: View {
 
     @State var show = true
 
@@ -32,6 +32,7 @@ struct errorView: UIViewRepresentable {
         let view = AnimationView(name: "error", bundle: Bundle.main)
         // lottie animationを表示開始
         view.play { (status) in
+      //  animationView?.completionBlock = { finished in
             if status {
                 withAnimation(.spring()) {
                     // 表示が終了したタイミングで表示フラグをOFFに
@@ -78,7 +79,7 @@ struct errorView: UIViewRepresentable {
 
 struct SplashErrorhScreen_Previews: PreviewProvider {
     static var previews: some View {
-        SplashErrorhScreen()
+        SwipGarbegeEndMove()
     }
 }
 

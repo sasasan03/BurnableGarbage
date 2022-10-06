@@ -15,12 +15,14 @@ struct DisabledTest: View {
     
     @State var nuigurumi = false
     @State var shoes = false
+    @State var kamikuzu = false
     
     @State var counter = 0
     
     var body: some View {
         VStack {
             HStack {
+                
                 Button {
                     withAnimation() {
                         nuigurumi = true
@@ -69,23 +71,29 @@ struct DisabledTest: View {
                         }
                     }
                 }.frame(height:200)
-                
+                ZStack{
+                    Color.black
+                    Button {
+                        withAnimation() {
+                            kamikuzu = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                if kamikuzu {
+                                    playSoundWrong()
+                                }
+                            }
+                        }
+                    } label: {
+                        if !kamikuzu {
+                            Image("kamikuzu")
+                                .resizable()
+                                .scaledToFit()
+                                .transition(AnyTransition.offset(x: 350, y: 800))
+                        }
+                    }
+                }.frame(width: 200, height: 200)
                 
             }
                 
-                //            .isShowq(isShow: shoes)
-                //            {
-                //              if shoes {
-                //             Image("shoes")
-                //                   .resizable()
-                //                   .scaledToFit()
-                //                   .frame(width: 230, height: 230)
-                //                   .transition(AnyTransition.offset(x: 350, y: 800))
-                //             } else {
-                //                Rectangle()
-                //                    .frame(width: 230, height: 230)
-                //                   .foregroundColor(.white)
-                //            }
                 
                 ZStack {
                     
@@ -95,7 +103,7 @@ struct DisabledTest: View {
                         .frame(width: 300, height: 300)
                     
                     if shoes {
-                        SplashErrorhScreen()
+                        SwipGarbegeEndMove()
                             .frame(width: 200, height: 200)
                             .scaleEffect(2.0)
                             .animation(
@@ -103,7 +111,15 @@ struct DisabledTest: View {
                     }
                     
                     if nuigurumi {
-                        SplashErrorhScreen()
+                        SwipGarbegeEndMove()
+                            .frame(width: 200, height: 200)
+                            .scaleEffect(2.0)
+                            .animation(
+                                .default.delay(0.2))
+                    }
+                    
+                    if kamikuzu {
+                        SwipGarbegeEndMove()
                             .frame(width: 200, height: 200)
                             .scaleEffect(2.0)
                             .animation(
@@ -112,6 +128,7 @@ struct DisabledTest: View {
                 }
             }
         }//body
+    
     }//struct
 
 struct DisabledTest_Previews: PreviewProvider {

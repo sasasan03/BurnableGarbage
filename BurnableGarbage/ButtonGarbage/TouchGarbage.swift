@@ -33,12 +33,12 @@ struct TouchGarbage: View {
                         ButtonGarbageOn = false
                         HomeOn = true
                     }) {
-                        Text("やめる")
-                            .font(.system(size: 30))
-                            .foregroundColor(Color.red)
-                            .fontWeight(.black)
-                            .lineLimit(1)
-                            .minimumScaleFactor(1.0)
+                        Image(systemName: "chevron.backward")
+                            .font(.system(size: 55))
+                            .foregroundColor(Color.blue)
+//                            .fontWeight(.black)
+//                            .lineLimit(1)
+//                            .minimumScaleFactor(1.0)
                     }
                     Spacer()
                     
@@ -50,12 +50,12 @@ struct TouchGarbage: View {
                         notebook = true
                         kutsushita = true
                     } label: {
-                        Text("やりなおす")
-                            .font(.system(size: 30))
-                            .foregroundColor(Color.blue)
-                            .fontWeight(.black)
-                            .lineLimit(1)
-                            .minimumScaleFactor(1.0)
+                        Image(systemName: "exclamationmark.arrow.triangle.2.circlepath")
+                            .font(.system(size: 55))
+                            .foregroundColor(Color.red)
+//                            .fontWeight(.black)
+//                            .lineLimit(1)
+//                            .minimumScaleFactor(1.0)
                     }
 
                 }
@@ -73,12 +73,15 @@ struct TouchGarbage: View {
                 HStack {
                                         
                     Button {
+                        guard shoes else {
+                            return
+                        }
                         withAnimation() {
-                            shoes.toggle()
+//                            self.plastic.toggle()
+                            shoes = false
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                if shoes == false{
+//                                if plastic == false{
                                     playSoundWrong()
-                                }
                             }
                         }
                     } label: {
@@ -89,21 +92,25 @@ struct TouchGarbage: View {
                                 .frame(width: 230, height: 230)
                                 .transition(AnyTransition.offset(x: 350, y: 800))
                         } else {
-                            Rectangle()
+//                            Rectangle()
+//                                .frame(width: 230, height: 230)
+//                                .foregroundColor(.white)
+                            Color.clear
                                 .frame(width: 230, height: 230)
-                                .foregroundColor(.white)
                         }
-                        //.dieabled効かない
-                    }.disabled(counter >= 1)
+                    }
 
                     
                     Button {
+                        guard nuigurumi else {
+                            return
+                        }
                         withAnimation() {
-                            nuigurumi.toggle()
+                          nuigurumi = false
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                if nuigurumi == false{
+                                
                                     playSoundWrong()
-                                }
+                                
                             }
                         }
                     } label: {
@@ -114,19 +121,19 @@ struct TouchGarbage: View {
                                 .frame(width: 230, height: 230)
                                 .transition(AnyTransition.offset(x: 0, y: 550))
                         } else {
-                            Rectangle()
+                            Color.clear
                                 .frame(width: 230, height: 230)
-                                .foregroundColor(.white)
                         }
                     }
                     
                     Button {
+                        guard notebook else {
+                            return
+                        }
                         withAnimation() {
-                            notebook.toggle()
+                            notebook = false
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                if notebook == false{
                                     playSoundWrong()
-                                }
                             }
                         }
                     } label: {
@@ -137,9 +144,8 @@ struct TouchGarbage: View {
                                 .frame(width: 230, height: 230)
                                 .transition(AnyTransition.offset(x: -250, y: 550))
                         } else {
-                            Rectangle()
+                            Color.clear
                                 .frame(width: 230, height: 230)
-                                .foregroundColor(.white)
                         }
                     }
                     
@@ -148,12 +154,13 @@ struct TouchGarbage: View {
                 HStack {
                     
                     Button {
+                        guard kutsushita else {
+                            return
+                        }
                         withAnimation() {
-                            kutsushita.toggle()
+                            kutsushita = false
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                if kutsushita == false{
                                     playSoundWrong()
-                                }
                             }
                         }
                     } label: {
@@ -164,19 +171,19 @@ struct TouchGarbage: View {
                                 .frame(width: 230, height: 230)
                                 .transition(AnyTransition.offset(x: 600, y: 800))
                         } else {
-                            Rectangle()
+                            Color.clear
                                 .frame(width: 230, height: 230)
-                                .foregroundColor(.white)
                         }
                     }
                     
                     Button {
+                        guard plastic else {
+                            return
+                        }
                         withAnimation() {
-                            self.plastic.toggle()
+                            plastic = false
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                if plastic == false{
                                     playSoundCorrect()
-                                }
                             }
                         }
                     } label: {
@@ -187,19 +194,19 @@ struct TouchGarbage: View {
                                 .frame(width: 230, height: 230)
                                 .transition(AnyTransition.offset(x: 0, y: 300))
                         } else {
-                            Rectangle()
+                            Color.clear
                                 .frame(width: 230, height: 230)
-                                .foregroundColor(.white)
                         }
                     }
                     
                     Button {
+                        guard kamikuzu else {
+                            return
+                        }
                         withAnimation() {
-                            kamikuzu.toggle()
+                            kamikuzu = false
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                if kamikuzu == false{
                                     playSoundWrong()
-                                }
                             }
                         }
                     } label: {
@@ -230,7 +237,7 @@ struct TouchGarbage: View {
 
 
                     if shoes == false {
-                        SplashErrorhScreen()
+                        SwipGarbegeEndMove()
                                 .frame(width: 200, height: 200)
                                 .scaleEffect(shoes ? 2.0 : 2.0)
                                 .animation(
@@ -238,7 +245,7 @@ struct TouchGarbage: View {
                     }
                     
                     if nuigurumi == false {
-                        SplashErrorhScreen()
+                        SwipGarbegeEndMove()
                                 .frame(width: 200, height: 200)
                                 .scaleEffect(nuigurumi ? 2.0 : 2.0)
                                 .animation(
@@ -246,7 +253,7 @@ struct TouchGarbage: View {
                     }
 
                     if notebook == false{
-                        SplashErrorhScreen()
+                        SwipGarbegeEndMove()
                                 .frame(width: 200, height: 200)
                                 .scaleEffect(notebook ? 2.0 : 2.0)
                                 .animation(
@@ -254,7 +261,7 @@ struct TouchGarbage: View {
                     }
 
                     if kutsushita == false{
-                        SplashErrorhScreen()
+                        SwipGarbegeEndMove()
                                 .frame(width: 200, height: 200)
                                 .scaleEffect(kutsushita ? 2.0 : 2.0)
                                 .animation(
@@ -270,7 +277,7 @@ struct TouchGarbage: View {
                     }
 
                     if kamikuzu == false{
-                        SplashErrorhScreen()
+                        SwipGarbegeEndMove()
                                 .frame(width: 200, height: 200)
                                 .scaleEffect(kamikuzu ? 2.0 : 2.0)
                                 .animation(

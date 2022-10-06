@@ -16,21 +16,26 @@ struct BackView: View {
     
     var body: some View {
         
+        GeometryReader {  geometry in
             
-        VStack(spacing: 0) {
+            VStack(spacing: 0) {
+                
                 ZStack {
                     Color.ligthBlue
                     Text("もえるごみ")
                         .font(.system(size: 80))
-                        .frame(width: 900, height: 400, alignment: .top)
-                }
+                        .frame(width: geometry.size.width * 0.75,height: geometry.size.height / 2, alignment: .top)
+                }.frame(width: geometry.size.width, height: geometry.size.height / 2)
+                
                 ZStack {
                     Color.ligthOrange
                     Text("プラスチックごみ")
                         .font(.system(size: 80))
-                        .frame(width: 900, height: 400, alignment: .bottom)
-                }
-            }.ignoresSafeArea(edges: .all)
+                        .frame(width: geometry.size.width * 0.9,height: geometry.size.height / 2, alignment: .bottom)
+                        
+                }.frame(width: geometry.size.width, height: geometry.size.height / 2)
+            }
+        }.ignoresSafeArea(edges: .all)
             
         }
 }
